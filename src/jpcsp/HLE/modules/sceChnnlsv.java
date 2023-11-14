@@ -42,7 +42,7 @@ public class sceChnnlsv extends HLEModule{
 		for(i = 0;i < len; i++){
 			log_string = String.format("%s 0x%02x", array[i]);
 		}
-		log.info(log_string);
+		log.error(log_string);
 	}
 
     /**
@@ -63,8 +63,8 @@ public class sceChnnlsv extends HLEModule{
 
     	ctx.write(ctx2Addr);
 
-		log.info("sceSdSetIndex: dumping...");
-		log.info("mode: " + ctx.mode);
+		log.error("sceSdSetIndex: dumping...");
+		log.error("mode: " + ctx.mode);
 
     	return result;
     }
@@ -91,7 +91,7 @@ public class sceChnnlsv extends HLEModule{
     	Utilities.readBytes(data.getAddress(), size, bytes, 0);
     	int result = crypto.getSAVEDATAEngine().hleSdRemoveValue(ctx, bytes, size);
 
-		log.info("sceSdRemoveValue: dumping...");
+		log.error("sceSdRemoveValue: dumping...");
 		log_bytes("data", bytes, size);
 
 
@@ -157,9 +157,9 @@ public class sceChnnlsv extends HLEModule{
     	SAVEDATA.SD_Ctx2 ctx = new SAVEDATA.SD_Ctx2();
     	ctx.read(ctx2Addr);
 
-		log.info("sceSdCreateList: dumping...");
-		log.info("encMode: " + encMode);
-		log.info("genMode: " + genMode);
+		log.error("sceSdCreateList: dumping...");
+		log.error("encMode: " + encMode);
+		log.error("genMode: " + genMode);
 
     	byte[] dataBytes;
     	if (data.isNull()) {
@@ -211,7 +211,7 @@ public class sceChnnlsv extends HLEModule{
     	SAVEDATA.SD_Ctx2 ctx = new SAVEDATA.SD_Ctx2();
     	ctx.read(ctx2Addr);
 
-		log.info("sceSdSetMember: dumping...");
+		log.error("sceSdSetMember: dumping...");
 
 		byte[] dataBytes = new byte[dataLength];
     	Utilities.readBytes(data.getAddress(), dataLength, dataBytes, 0);
@@ -243,7 +243,7 @@ public class sceChnnlsv extends HLEModule{
     	int result = crypto.getSAVEDATAEngine().hleSdCleanList(ctx);
 
     	ctx.write(ctx2Addr);
-		log.info("sceSdCleanList: no parameter to dump...");
+		log.error("sceSdCleanList: no parameter to dump...");
 
     	return result;
     }
