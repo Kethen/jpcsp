@@ -30,9 +30,20 @@ import jpcsp.crypto.CryptoEngine;
 import jpcsp.crypto.SAVEDATA;
 import jpcsp.util.Utilities;
 
+import java.lang.String;
+
 public class sceChnnlsv extends HLEModule{
     public static Logger log = Modules.getLogger("sceChnnlsv");
     private CryptoEngine crypto = new CryptoEngine();
+
+	private static void log_bytes(String name, byte[] array, int len){
+		String log_string = String.format("%s: ", name);
+		int i;
+		for(i = 0;i < len; i++){
+			log_string = String.format("%s 0x%02x", array[i]);
+		}
+		log.info(log_string);
+	}
 
     /**
      * Initialize the SceSdCtx2 struct and set the mode.
@@ -51,6 +62,9 @@ public class sceChnnlsv extends HLEModule{
     	int result = crypto.getSAVEDATAEngine().hleSdSetIndex(ctx, mode);
 
     	ctx.write(ctx2Addr);
+
+		log.info("sceSdSetIndex: dumping...");
+		log.info("mode: " + ctx.mode);
 
     	return result;
     }
@@ -76,6 +90,10 @@ public class sceChnnlsv extends HLEModule{
     	byte[] bytes = new byte[size];
     	Utilities.readBytes(data.getAddress(), size, bytes, 0);
     	int result = crypto.getSAVEDATAEngine().hleSdRemoveValue(ctx, bytes, size);
+
+		log.info("sceSdRemoveValue: dumping...");
+		log_bytes("data", bytes, size);
+
 
     	ctx.write(ctx2Addr);
 
@@ -139,12 +157,17 @@ public class sceChnnlsv extends HLEModule{
     	SAVEDATA.SD_Ctx2 ctx = new SAVEDATA.SD_Ctx2();
     	ctx.read(ctx2Addr);
 
+		log.info("sceSdCreateList: dumping...");
+		log.info("encMode: " + encMode);
+		log.info("genMode: " + genMode);
+
     	byte[] dataBytes;
     	if (data.isNull()) {
     		dataBytes = null;
     	} else {
     		dataBytes = new byte[16];
         	Utilities.readBytes(data.getAddress(), dataBytes.length, dataBytes, 0);
+			log_bytes("data", dataBytes, 16);
     	}
 
     	byte[] keyBytes;
@@ -153,6 +176,7 @@ public class sceChnnlsv extends HLEModule{
     	} else {
     		keyBytes = new byte[16];
         	Utilities.readBytes(key.getAddress(), keyBytes.length, keyBytes, 0);
+			log_bytes("key", keyBytes, 16);
     	}
 
     	int result = crypto.getSAVEDATAEngine().hleSdCreateList(ctx, encMode, genMode, dataBytes, keyBytes);
@@ -187,8 +211,11 @@ public class sceChnnlsv extends HLEModule{
     	SAVEDATA.SD_Ctx2 ctx = new SAVEDATA.SD_Ctx2();
     	ctx.read(ctx2Addr);
 
+		log.info("sceSdSetMember: dumping...");
+
 		byte[] dataBytes = new byte[dataLength];
     	Utilities.readBytes(data.getAddress(), dataLength, dataBytes, 0);
+		log_bytes("data", dataBytes, dataLength);
 
     	int result = crypto.getSAVEDATAEngine().hleSdSetMember(ctx, dataBytes, dataLength);
 
@@ -216,6 +243,7 @@ public class sceChnnlsv extends HLEModule{
     	int result = crypto.getSAVEDATAEngine().hleSdCleanList(ctx);
 
     	ctx.write(ctx2Addr);
+		log.info("sceSdCleanList: no parameter to dump...");
 
     	return result;
     }
