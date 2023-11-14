@@ -661,8 +661,8 @@ public class KirkEngine {
 			return KIRK_INVALID_MODE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_PRIVATE) %s", KIRK_CMD_ENCRYPT_PRIVATE, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_PRIVATE) %s", KIRK_CMD_ENCRYPT_PRIVATE, header));
 		}
 
 		//FILL PREDATA WITH RANDOM DATA
@@ -712,8 +712,8 @@ public class KirkEngine {
 			return KIRK_INVALID_MODE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_PRIVATE) %s", KIRK_CMD_DECRYPT_PRIVATE, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_PRIVATE) %s", KIRK_CMD_DECRYPT_PRIVATE, header));
 		}
 
 		AES_cbc_decrypt(aes_kirk1, inbuff, inoffset, keys, 16*2); //decrypt AES & CMAC key to temp buffer
@@ -853,8 +853,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_IV_0) %s", KIRK_CMD_ENCRYPT_IV_0, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_IV_0) %s", KIRK_CMD_ENCRYPT_IV_0, header));
 		}
 
 		//Set the key
@@ -895,8 +895,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_IV_FUSE) %s", KIRK_CMD_ENCRYPT_IV_FUSE, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ENCRYPT_IV_FUSE) %s", KIRK_CMD_ENCRYPT_IV_FUSE, header));
 		}
 
 		//Set the key
@@ -929,8 +929,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_IV_0) %s", KIRK_CMD_DECRYPT_IV_0, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_IV_0) %s", KIRK_CMD_DECRYPT_IV_0, header));
 		}
 
 		//Set the key
@@ -966,8 +966,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_IV_FUSE) %s", KIRK_CMD_DECRYPT_IV_FUSE, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_DECRYPT_IV_FUSE) %s", KIRK_CMD_DECRYPT_IV_FUSE, header));
 		}
 
 		//Set the key
@@ -998,8 +998,8 @@ public class KirkEngine {
 			return KIRK_DATA_SIZE_ZERO;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_PRIV_SIGN_CHECK) %s", KIRK_CMD_PRIV_SIGN_CHECK, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_PRIV_SIGN_CHECK) %s", KIRK_CMD_PRIV_SIGN_CHECK, header));
 		}
 
 		if (header.mode == KIRK_MODE_CMD1) {
@@ -1039,8 +1039,8 @@ public class KirkEngine {
 			return KIRK_DATA_SIZE_ZERO;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_SHA1_HASH) %s", KIRK_CMD_SHA1_HASH, header));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_SHA1_HASH) %s", KIRK_CMD_SHA1_HASH, header));
 		}
 
 		SHAInit(sha);
@@ -1064,8 +1064,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_GEN_KEYS)", KIRK_CMD_ECDSA_GEN_KEYS));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_GEN_KEYS)", KIRK_CMD_ECDSA_GEN_KEYS));
 		}
 
 		ecdsa_set_curve(ec_p, ec_a, ec_b2, ec_N2, Gx2, Gy2);
@@ -1097,8 +1097,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_MULTIPLY_POINT) %s", KIRK_CMD_ECDSA_MULTIPLY_POINT, pointmult));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_MULTIPLY_POINT) %s", KIRK_CMD_ECDSA_MULTIPLY_POINT, pointmult));
 		}
 
 		ecdsa_set_curve(ec_p, ec_a, ec_b2, ec_N2, Gx2, Gy2);
@@ -1123,8 +1123,8 @@ public class KirkEngine {
 			return KIRK_OPERATION_SUCCESS;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_PRNG)", KIRK_CMD_PRNG));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_PRNG)", KIRK_CMD_PRNG));
 		}
 
 		memcpy(temp, 4, PRNG_DATA, 0x14);
@@ -1325,8 +1325,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_SIGN) %s", KIRK_CMD_ECDSA_SIGN, signbuf));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_SIGN) %s", KIRK_CMD_ECDSA_SIGN, signbuf));
 		}
 
 		decrypt_kirk16_private(dec_private, signbuf.enc_private);
@@ -1355,8 +1355,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_VERIFY) %s", KIRK_CMD_ECDSA_VERIFY, sig));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_ECDSA_VERIFY) %s", KIRK_CMD_ECDSA_VERIFY, sig));
 		}
 
 		ecdsa_set_curve(ec_p, ec_a, ec_b2, ec_N2, Gx2, Gy2);
@@ -1378,8 +1378,8 @@ public class KirkEngine {
 			return KIRK_INVALID_SIZE;
 		}
 
-		if (log.isTraceEnabled()) {
-			log.trace(String.format("Kirk cmd=0x%X(KIRK_CMD_CERT_VERIFY) %s", KIRK_CMD_CERT_VERIFY, Utilities.toString(inbuff, inoffset, insize)));
+		if (true) {
+			log.error(String.format("Kirk cmd=0x%X(KIRK_CMD_CERT_VERIFY) %s", KIRK_CMD_CERT_VERIFY, Utilities.toString(inbuff, inoffset, insize)));
 		}
 
 		// TODO Kirk CMD 18 (KIRK_CMD_CERT_VERIFY) not implemented
