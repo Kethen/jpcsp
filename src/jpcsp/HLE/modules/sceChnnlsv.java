@@ -33,14 +33,14 @@ import jpcsp.util.Utilities;
 import java.lang.String;
 
 public class sceChnnlsv extends HLEModule{
-    public static Logger log = Modules.getLogger("sceChnnlsv");
+    public static Logger log = CryptoEngine.log;
     private CryptoEngine crypto = new CryptoEngine();
 
 	private static void log_bytes(String name, byte[] array, int len){
 		String log_string = String.format("%s: ", name);
 		int i;
 		for(i = 0;i < len; i++){
-			log_string = String.format("%s 0x%02x", array[i]);
+			log_string = String.format("%s 0x%02x", log_string, array[i]);
 		}
 		log.error(log_string);
 	}
